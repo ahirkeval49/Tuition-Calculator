@@ -4,8 +4,9 @@ import pandas as pd
 # Load data directly from GitHub
 @st.cache_data
 def load_data():
-    csv_url = "https://raw.githubusercontent.com/[ahirkeval49]/[Tuition_Calculator]/main/2024-2025%20I-20%20CostEstimates%20Workseets%28Graduate%20Details%29.csv"
-    df = pd.read_csv(csv_url)
+    # Load the dataset
+    data = pd.read_csv("2024-2025 I-20 CostEstimates Workseets(Graduate Details).csv")
+    
     
     # Clean data
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
