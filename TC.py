@@ -1,13 +1,12 @@
 import streamlit as st
 import pandas as pd
 
-# Load data directly from GitHub
+# Load data from GitHub using the raw URL
 @st.cache_data
 def load_data():
-    # Load the dataset
-    data = pd.read_csv("2024-2025 I-20 CostEstimates Workseets(Graduate Details).csv")
-    
-    
+    url = "https://raw.githubusercontent.com/{ahirkeval49}/{Tuition_Calculator}/{branch}/TuitionCost.csv"
+    df = pd.read_csv(url)
+
     # Clean data
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df['Per Credit'] = df['Per Credit'].replace('[\$,]', '', regex=True).astype(float)
@@ -43,7 +42,7 @@ selected_program = st.selectbox(
 
 # Get Program Data
 program_data = df[(df['College'] == selected_college) & 
-                 (df['Program'] == selected_program)].iloc[0]
+                  (df['Program'] == selected_program)].iloc[0]
 
 # Cost Calculation
 st.markdown("---")
@@ -85,14 +84,11 @@ with col2:
 st.markdown("---")
 total_cost = tuition + program_data['Fees'] + program_data['Living Expenses']
 
-
 st.subheader("Total Estimated Cost")
 st.markdown(f"""
-    ```plaintext
-    Tuition:       ${tuition:>10,.2f}
-    Fees:          ${program_data['Fees']:>10,.2f}
-    Living Costs:  ${program_data['Living_Expenses']:>10,.2f}
-    --------------------------------
-    Grand Total:   ${total_cost:>10,.2f}
-    ```
-    """)
+```plaintext
+Tuition:       ${tuition:>10,.2f}
+Fees:          ${program_data['Fees']:>10,.2f}
+Living Costs:  ${program_data['Living Expenses']:>10,.2f}
+--------------------------------
+Grand Total:   ${total_cost:>10,.2f}
