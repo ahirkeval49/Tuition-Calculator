@@ -92,3 +92,5 @@ Fees:          ${program_data['Fees']:>10,.2f}
 Living Costs:  ${program_data['Living Expenses']:>10,.2f}
 --------------------------------
 Grand Total:   ${total_cost:>10,.2f}
+ ```
+ """)
