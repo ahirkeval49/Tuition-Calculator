@@ -4,7 +4,7 @@ import pandas as pd
 # Load data directly from GitHub
 @st.cache_data
 def load_data():
-    csv_url = "https://raw.githubusercontent.com/[YOUR_USERNAME]/[REPO_NAME]/main/graduate_cost_data.csv"
+    csv_url = "https://raw.githubusercontent.com/[ahirkeval49]/[Tuition_Calculator]/main/2024-2025%20I-20%20CostEstimates%20Workseets%28Graduate%20Details%29.csv"
     df = pd.read_csv(csv_url)
     
     # Clean data
