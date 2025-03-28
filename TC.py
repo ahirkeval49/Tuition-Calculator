@@ -8,25 +8,37 @@ st.set_page_config(page_title="UHart Cost Calculator", layout="wide")
 st.title("🎓 University of Hartford Graduate Cost Calculator")
 st.markdown("**Official 2024-2025 Graduate Program Cost Estimates**")
 
-# Load data (robustly with error handling)
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+# App setup
+st.set_page_config(page_title="UHart Cost Calculator", layout="wide")
+
+# Title
+st.title("🎓 University of Hartford Graduate Cost Calculator")
+st.markdown("**Official 2024-2025 Graduate Program Cost Estimates**")
+
+# Load data with robust error handling and cleaning
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_excel("TuitionCost.xlsx",engine='openpyxl')
+        df = pd.read_excel("TuitionCost.xlsx", engine='openpyxl')
         df.columns = df.columns.str.strip()
-        
-     # Define helper to clean "Per Credit" column
- def clean_per_credit(x):
-     if pd.isna(x) or "flat" in str(x).lower() or "year" in str(x).lower() or "n/a" in str(x).lower():
-        return np.nan  # Use NaN clearly for flat rate programs
-        return float(str(x).replace('$', '').replace(',', '').strip())
 
-        # Clean numeric columns safely
+        # Helper function to clean 'Per Credit'
+        def clean_per_credit(x):
+            if pd.isna(x) or "flat" in str(x).lower() or "year" in str(x).lower() or "n/a" in str(x).lower():
+                return np.nan
+            else:
+                return float(str(x).replace('$', '').replace(',', '').strip())
+
+        # Apply data cleaning
         df['Per Credit'] = df['Per Credit'].apply(clean_per_credit)
         df['Tuition for 18 Credits'] = df['Tuition for 18 Credits'].replace('[$,]', '', regex=True).astype(float)
         df['Fees'] = df['Fees'].replace('[$,]', '', regex=True).astype(float)
         df['Living Expenses'] = df['Living Expenses'].replace('[$,]', '', regex=True).astype(float)
-
+        
         df['College'] = df['College'].str.strip()
         df['Program'] = df['Program'].str.strip()
 
