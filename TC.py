@@ -7,13 +7,16 @@ def load_data():
     
     df = pd.read_csv("TuitionCost.csv")
 
-    # Clean data
+    # Temporary debug statement:
+    st.write(df.columns.tolist())
+
+    # Rest of your code follows here...
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df['Per Credit'] = df['Per Credit'].replace('[\$,]', '', regex=True).astype(float)
     df['Tuition for 18 Credits'] = df['Tuition for 18 Credits'].replace('[\$,]', '', regex=True).astype(float)
     df['Fees'] = df['Fees'].replace('[\$,]', '', regex=True).astype(float)
     df['Living Expenses'] = df['Living Expenses'].replace('[\$,]', '', regex=True).astype(float)
-    
+
     return df
 
 df = load_data()
