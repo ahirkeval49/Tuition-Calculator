@@ -87,9 +87,11 @@ total_cost = tuition + program_data['Fees'] + program_data['Living Expenses']
 
 st.subheader("Total Estimated Cost")
 st.markdown(f"""
-```plaintext
-Tuition:       ${tuition:>10,.2f}
-Fees:          ${program_data['Fees']:>10,.2f}
-Living Costs:  ${program_data['Living_Expenses']:>10,.2f}
---------------------------------
-Grand Total:   ${total_cost:>10,.2f}
+    ```plaintext
+    Tuition:       ${tuition:>10,.2f}
+    Fees:          ${program_data['Fees']:>10,.2f}
+    Living Costs:  ${program_data['Living_Expenses']:>10,.2f}
+    --------------------------------
+    Grand Total:   ${total_cost:>10,.2f}
+    ```
+    """)
