@@ -15,11 +15,11 @@ def load_data():
         df = pd.read_excel("TuitionCost.xlsx",engine='openpyxl')
         df.columns = df.columns.str.strip()
         
-        # Define helper to clean "Per Credit" column
-        def clean_per_credit(x):
-            if pd.isna(x) or "flat" in str(x).lower() or "year" in str(x).lower() or "n/a" in str(x).lower():
-                return np.nan  # Use NaN clearly for flat rate programs
-            return float(str(x).replace('$', '').replace(',', '').strip())
+     # Define helper to clean "Per Credit" column
+ def clean_per_credit(x):
+     if pd.isna(x) or "flat" in str(x).lower() or "year" in str(x).lower() or "n/a" in str(x).lower():
+        return np.nan  # Use NaN clearly for flat rate programs
+        return float(str(x).replace('$', '').replace(',', '').strip())
 
         # Clean numeric columns safely
         df['Per Credit'] = df['Per Credit'].apply(clean_per_credit)
