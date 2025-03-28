@@ -4,8 +4,8 @@ import pandas as pd
 # Load data from GitHub using the raw URL
 @st.cache_data
 def load_data():
-    url = "TuitionCost.csv" 
-    df = pd.read_csv(url)
+    
+    df = pd.read_csv("TuitionCost.csv")
 
     # Clean data
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
