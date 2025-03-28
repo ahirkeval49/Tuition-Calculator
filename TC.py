@@ -9,13 +9,13 @@ def load_data():
 
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
-    # EXACT column names matched:
-    df['Per Credit ($)'] = df['Per Credit ($)'].replace('[\$,]', '', regex=True).astype(float)
-    df['Tuition (18 Credits)'] = df['Tuition (18 Credits)'].replace('[\$,]', '', regex=True).astype(float)
-    df['Fees ($)'] = df['Fees ($)'].replace('[\$,]', '', regex=True).astype(float)
-    df['Living Expenses ($)'] = df['Living Expenses ($)'].replace('[\$,]', '', regex=True).astype(float)
+    # Now use the EXACT column names found
+    df['Per Credit'] = df['Per Credit'].replace('[\$,]', '', regex=True).astype(float)
+    df['Tuition for 18 Credits'] = df['Tuition for 18 Credits'].replace('[\$,]', '', regex=True).astype(float)
+    df['Fees'] = df['Fees'].replace('[\$,]', '', regex=True).astype(float)
+    df['Living Expenses'] = df['Living Expenses'].replace('[\$,]', '', regex=True).astype(float)
 
-    return df
+    return dff
 
 df = load_data()
 
