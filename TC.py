@@ -12,7 +12,7 @@ st.markdown("**Official 2024-2025 Graduate Program Cost Estimates**")
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv("TuitionCost.csv")
+        df = pd.read_excel("TuitionCost.csv")
         df.columns = df.columns.str.strip()
 
         numeric_cols = ['Per Credit', 'Tuition for 18 Credits', 'Fees', 'Living Expenses']
